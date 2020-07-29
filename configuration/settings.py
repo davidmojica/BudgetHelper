@@ -13,9 +13,7 @@ from q2_sdk.core.default_settings import *  # pylint: disable=wildcard-import
 #   ('extension_2', 'sub_dir.extension_2')
 # ]
 #
-INSTALLED_EXTENSIONS = [
-    # "your_extension_here"
-]
+INSTALLED_EXTENSIONS = ['BudgetHelper']
 
 # If you make a custom core (q2 create_coreflow), add the path here
 # to be discoverable for use with DYNAMIC_CORE_SELECTION
