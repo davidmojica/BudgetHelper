@@ -4,18 +4,16 @@
     "test": "echo Frontend testing not configured",
     "test-cov": "echo Frontend testing coverage not configured",
     "lint": "echo Frontend linting not configured",
-    
-      "build": "cp -r public/. dist/ & parcel build --public-url '.' src/*.html",
-      "dev": "cpx -w \"public/**/*\" dist & parcel watch --public-url '.' src/*.html --hmr-port 1982"
+    "build": "cp -r public/. dist/ & parcel build --public-url '.' src/*.html",
+    "dev": "cpx -w \"public/**/*\" dist & parcel watch --public-url '.' src/*.html --hmr-port 1982"
   },
-    
-  
   "dependencies": {
-      "q2-tecton-sdk": "v0.36.3"
+    "q2-tecton-sdk": "v0.36.3"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "cpx": "latest",
     "parcel": "latest"
   }
-  
 }

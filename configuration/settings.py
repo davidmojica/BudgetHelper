@@ -2,6 +2,8 @@
 # First let's set the default settings:
 from q2_sdk.core.default_settings import *  # pylint: disable=wildcard-import
 
+HQ_URL = os.environ.get('HQ_URL', '')
+
 # To override any defaults, simply redefine them below.
 # Some commonly overridden values are commented out below
 
