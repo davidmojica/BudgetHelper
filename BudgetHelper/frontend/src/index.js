@@ -1,42 +1,27 @@
-import { connect } from 'q2-tecton-sdk';
+// Import React
+import React from "react";
+import ReactDOM from "react-dom";
 
-const title = document.getElementById('title');
-const button = document.querySelector('q2-btn');
-const input = document.querySelector('q2-input');
-const messages = document.getElementById('messages');
+// Import Tecton's `connect()` function
+import { connect } from "q2-tecton-sdk";
 
-connect().then(capabilities => {
-  capabilities.sources
-    .requestExtensionData({ route: 'default' })
-    .then(response => {
-      title.innerHTML = response.data.message;
-    })
-    .catch(error => showError(error))
-    .finally(() => capabilities.actions.setFetching(false));
+// Import files we will create in the next steps
+import TectonContext from "./contexts/tecton";
+import App from "./components/App";
 
-  button.addEventListener('click', submit);
-
-  function submit() {
-    let name = input.value;
-
-    capabilities.sources
-      .requestExtensionData({
-        route: 'submit',
-        body: { name: name }
-      })
-      .then(response => {
-        messages.insertAdjacentHTML('beforeend',
-          `<li>Hi ${response.data.name} the server date is ${response.data.date}.</li>`
-        );
-      })
-      .catch(error => showError(error));
-  }
-
-  function showError(error) {
-    capabilities.actions.showModal({
-      title: 'Error',
-      message: error.data.message,
-      modalType: 'error'
-    });
-  }
+// Initialize your Tecton extension and then render the React app
+connect().then(({ actions, sources }) => {
+  renderApp(document.getElementById("app"), { actions, sources });
 });
+
+// Adding the capabilities (actions and sources) to the Tecton
+// Context we are about to create will make them available anywhere
+// in the React app.
+function renderApp(root, capabilities) {
+  ReactDOM.render(
+    <TectonContext.Provider value={capabilities}>
+      <App />
+    </TectonContext.Provider>,
+    root
+  );
+}

@@ -8,7 +8,9 @@
     "dev": "cpx -w \"public/**/*\" dist & parcel watch --public-url '.' src/*.html --hmr-port 1982"
   },
   "dependencies": {
-    "q2-tecton-sdk": "v0.36.3"
+    "q2-tecton-sdk": "v0.36.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

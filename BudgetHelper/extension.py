@@ -26,6 +26,11 @@ class BudgetHelperHandler(Q2TectonClientRequestHandler):
 
         return router
 
+    def get(self):
+        return {
+            'message': "Hello World from extension get"
+        }
+
     async def default(self):
         return {
             'message': 'Hello World from extension'
