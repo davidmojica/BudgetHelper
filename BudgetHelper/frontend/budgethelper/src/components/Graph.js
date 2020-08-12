@@ -1,5 +1,6 @@
+const Chart = window.Chart;
 // Import React
-import React from "react";
+/*import React from "react";
 import ReactDOM from "react-dom";
 
 // Import Tecton's `connect()` function
@@ -12,16 +13,25 @@ import App from "./AppData";
 // Initialize your Tecton extension and then render the React app
 connect().then(({ actions, sources }) => {
   renderApp(document.getElementById("app"), { actions, sources });
-});
+});*/
 
-var fs = require("fs");
+// var fs = require('fs');
 
-var budgetAmount = 300.00;
-var c = document.getElementById("celebration"); // Congartulator
-c.style.display = "none"; //block // Congartulator
+var budgetAmount = 90.00;
+// var c = document.getElementById("celebration"); // Congartulator
+// c.style.display = "none"; //block // Congartulator
 
-var lastVisit = JSON.parse(fs.readFileSync("./src/last_visit.json", "utf-8")); // Congartulator
-var transactionData = JSON.parse(fs.readFileSync("./src/transaction.json", "utf-8"));
+// var lastVisit = JSON.parse(fs.readFileSync("./src/last_visit.json", "utf-8")); // Congartulator
+var transactionData = {
+  data: {
+    transactions: [{
+      amount: -100,
+      description: "cool money",
+      postedDate: "2020-08-05T12:00:00.000-05:00"
+    }]
+  }
+}
+// var transactionData = JSON.parse(fs.readFileSync("./src/transaction.json", "utf-8"));
 var transactions = transactionData.data.transactions;
 // An amount for each month
 var amountSpent = [0.0, 0.0, 0.0, 0.0,
@@ -40,11 +50,11 @@ transactions.forEach(function(transaction) {
   // Make sure transactions are only from the past 12 months
   // (I would use a BreakException to make this simpler, but that would assume the transactions are in reverse chonological order,
   // plus it seems that if there's a single error in this file- even if I catch it- the graph won't render)
-  if ( (parseInt(transaction.postedDate.substring(0, 4)) == startYear - 1 && parseInt(transaction.postedDate.substring(5, 7)) > startMonth ) ||
-  parseInt(transaction.postedDate.substring(0, 4)) == startYear) {
+  if ( (parseInt(transaction.postedDate.substring(0, 4)) === startYear - 1 && parseInt(transaction.postedDate.substring(5, 7)) > startMonth ) ||
+  parseInt(transaction.postedDate.substring(0, 4)) === startYear) {
     transactionNum++;
     // I'm not sure if this "Funds Transfer" technique will be accurate with other data
-    if (amount < 0 && transaction.description != "Funds Transfer")
+    if (amount < 0 && transaction.description !== "Funds Transfer")
     {
       var index = 11 - startMonth + parseInt(transaction.postedDate.substring(5, 7));
       if (index > 11) { index -= 12 }
@@ -61,13 +71,13 @@ for (var i = 0; i < amountSpent.length; i++) {
 
 // Make the celebration message appear if the user stayed under budget last month
 // Congartulator
-var d = new Date();
+/*var d = new Date();
 var thisVisit = { month: d.getMonth(), year: d.getFullYear() };
 if (thisVisit.year > lastVisit.year || (thisVisit.year == lastVisit.year && thisVisit.month > lastVisit.month) )
 {
   if (amountSpent[10] < budgetAmount)
   { c.style.display = "block"; }
-}
+}*/
 
 var underColor = 'rgba(0, 153, 255, 0.6)';
 var underColorHi = 'rgba(0, 153, 255, 1)';
@@ -82,12 +92,12 @@ var monthOrder = [];
 var nameIndex = startMonth - 1;
 
 // Set bar colors and order of months (to be shown on the X axis)
-for (var i = 11; i >= 0; i--)
+for (var m = 11; m >= 0; m--)
 {
   // TODO: Better way to do this?
-  barColors[i] = (amountSpent[i] > budgetAmount) ? overColor : underColor;
-  barColorsHi[i] = (amountSpent[i] > budgetAmount) ? overColorHi : underColorHi;
-  monthOrder[i] = monthNames[nameIndex];
+  barColors[m] = (amountSpent[m] > budgetAmount) ? overColor : underColor;
+  barColorsHi[m] = (amountSpent[m] > budgetAmount) ? overColorHi : underColorHi;
+  monthOrder[m] = monthNames[nameIndex];
 
   nameIndex = (nameIndex <= 0) ? 11 : nameIndex - 1;
 }
@@ -97,7 +107,7 @@ if (amountSpent[11] > budgetAmount)
   barColorsHi[11] = 'rgba(245, 76, 145, 1)';
 }
 
-let myChart = document.getElementById('myChart').getContext('2d');
+let myChart = document.getElementById('budgetChart').getContext('2d');
 let spendingChart = new Chart(myChart, {
   plugins: {
     annotation: {
@@ -188,11 +198,11 @@ let spendingChart = new Chart(myChart, {
 // Adding the capabilities (actions and sources) to the Tecton
 // Context we are about to create will make them available anywhere
 // in the React app.
-function renderApp(root, capabilities) {
+/*function renderApp(root, capabilities) {
   ReactDOM.render(
     <TectonContext.Provider value={capabilities}>
       <App />
     </TectonContext.Provider>,
     root
   );
-}
+}*/
