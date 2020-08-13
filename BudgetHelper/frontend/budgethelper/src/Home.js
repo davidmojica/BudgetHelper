@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-import { Graph } from './components/Graph';
+import Graph from './components/Graph';
+
 export const Home = () => (
     
     <div>
@@ -14,5 +15,6 @@ export const Home = () => (
             <Button variant="primary" type="submit" >Submit</Button>
         </Form>
     </div>
-
 )
+
+Graph(200);
