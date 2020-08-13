@@ -8,13 +8,17 @@ export const Home = () => (
     <div>
         <h2>Budget Graph</h2>
         <Form>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="myID">
                 <Form.Label>Please input your desired average monthly expenses</Form.Label>
-                <Form.Control type="number" min="0" placeholder="Monthly Budget" />
+                <Form.Control id="budgetInput" type="number"  min="0" placeholder="Monthly Budget" />
             </Form.Group>
-            <Button variant="primary" type="submit" >Submit</Button>
+            <Button variant="primary" onClick={submitBudget}>Submit</Button>
         </Form>
     </div>
 )
+Graph(0);
 
-Graph(200);
+function submitBudget() {
+
+    Graph(document.getElementById("budgetInput").value);
+}
