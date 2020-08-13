@@ -17,7 +17,7 @@ connect().then(({ actions, sources }) => {
 
 // var fs = require('fs');
 
-var budgetAmount = 90.00;
+var budgetAmount = 150.00;
 // var c = document.getElementById("celebration"); // Congartulator
 // c.style.display = "none"; //block // Congartulator
 
@@ -25,11 +25,59 @@ var budgetAmount = 90.00;
 var transactionData = {
   data: {
     transactions: [{
-      amount: -100,
+      amount: -104,
       description: "cool money",
       postedDate: "2020-08-05T12:00:00.000-05:00"
-    }]
-  }
+    },{
+      amount: -120.86,
+      description: "cool money",
+      postedDate: "2020-07-05T12:00:00.000-05:00"
+    },{
+      amount: -381,
+      description: "cool money",
+      postedDate: "2020-06-05T12:00:00.000-05:00"
+    },{
+      amount: -249,
+      description: "cool money",
+      postedDate: "2020-05-05T12:00:00.000-05:00"
+    },{
+      amount: -84.38,
+      description: "cool money",
+      postedDate: "2020-04-05T12:00:00.000-05:00"
+    },{
+      amount: -184.25,
+      description: "cool money",
+      postedDate: "2020-03-05T12:00:00.000-05:00"
+    },{
+      amount: -142.01,
+      description: "cool money",
+      postedDate: "2020-02-05T12:00:00.000-05:00"
+    },{
+      amount: -84,
+      description: "cool money",
+      postedDate: "2020-01-05T12:00:00.000-05:00"
+    },{
+      amount: -608,
+      description: "cool money",
+      postedDate: "2019-12-05T12:00:00.000-05:00"
+    },{
+      amount: -483.49,
+      description: "cool money",
+      postedDate: "2019-11-05T12:00:00.000-05:00"
+    },{
+      amount: -900.00,
+      description: "Funds Transfer",
+      postedDate: "2019-11-15T12:00:00.000-05:00"
+    },{
+      amount: -139.10,
+      description: "cool money",
+      postedDate: "2019-10-05T12:00:00.000-05:00"
+    },{
+      amount: -60,
+      description: "cool money",
+      postedDate: "2019-09-05T12:00:00.000-05:00"
+    }
+  ]}
 }
 // var transactionData = JSON.parse(fs.readFileSync("./src/transaction.json", "utf-8"));
 var transactions = transactionData.data.transactions;
@@ -174,6 +222,15 @@ let spendingChart = new Chart(myChart, {
               beginAtZero: true
           }
       }]
+    },
+    tooltips: {
+      enabled: true,
+      mode: 'single',
+      callbacks: {
+          label: function(tooltipItems, data) { 
+              return "$" + tooltipItems.yLabel + " Spent";
+          }
+      }
     },
     annotation: {
       annotations: [
